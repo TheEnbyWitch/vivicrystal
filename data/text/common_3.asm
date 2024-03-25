@@ -1406,20 +1406,17 @@ _ItemUsedText::
 	text "."
 	done
 
-_ItemGotOnText::
-	text "<PLAYER> got on the@"
-	text_low
-	text_ram wStringBuffer2
-	text "."
+; VIVI BEGIN - Replace unreferenced functions with EXP Share
+_ExpShareToggleOn::
+	text "The EXP.SHARE was"
+	line "turned on."
 	prompt
 
-_ItemGotOffText::
-	text "<PLAYER> got off@"
-	text_low
-	text "the @"
-	text_ram wStringBuffer2
-	text "."
+_ExpShareToggleOff::
+	text "The EXP.SHARE was"
+	line "turned off."
 	prompt
+; VIVI END
 
 _KnowsMoveText::
 	text_ram wStringBuffer1

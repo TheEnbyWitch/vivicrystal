@@ -70,7 +70,7 @@ ItemEffects:
 	dw CoinCaseEffect      ; COIN_CASE
 	dw ItemfinderEffect    ; ITEMFINDER
 	dw PokeFluteEffect     ; POKE_FLUTE
-	dw NoEffect            ; EXP_SHARE
+	dw ExpShareEffect      ; EXP_SHARE ; VIVI: We want an EXP Share effect
 	dw OldRodEffect        ; OLD_ROD
 	dw GoodRodEffect       ; GOOD_ROD
 	dw NoEffect            ; SILVER_LEAF
@@ -508,6 +508,21 @@ PokeBallEffect:
 	call PrintText
 
 	call ClearSprites
+
+; VIVI BEGIN: EXP for catching pokemon
+	ld a, [wTempSpecies]
+	ld l, a
+	ld a, [wCurPartyLevel]
+	ld h, a
+	push hl
+	farcall ApplyExperienceAfterEnemyCaught
+	pop hl
+	ld a, l
+	ld [wCurPartySpecies], a
+	ld [wTempSpecies], a
+	ld a, h
+	ld [wCurPartyLevel], a
+; VIVI END
 
 	ld a, [wTempSpecies]
 	dec a
@@ -1889,19 +1904,16 @@ LoadCurHPIntoBuffer3:
 	ld [wHPBuffer3], a
 	ret
 
-LoadHPIntoBuffer3: ; unreferenced
-	ld a, d
-	ld [wHPBuffer3 + 1], a
-	ld a, e
-	ld [wHPBuffer3], a
-	ret
+ExpShareEffect: ; VIVI: Replaced unreferenced functions with EXP Share effect
+	ld a, [wExpShareToggle]
+	xor 1
+	ld [wExpShareToggle], a
+	and a
+	ld hl, ExpShareToggleOff
+	jp nz, PrintText
 
-LoadHPFromBuffer3: ; unreferenced
-	ld a, [wHPBuffer3 + 1]
-	ld d, a
-	ld a, [wHPBuffer3]
-	ld e, a
-	ret
+	ld hl, ExpShareToggleOn
+	jp PrintText
 
 LoadCurHPIntoBuffer2:
 	ld a, MON_HP
@@ -2705,13 +2717,15 @@ ItemUsedText:
 	text_far _ItemUsedText
 	text_end
 
-ItemGotOnText: ; unreferenced
-	text_far _ItemGotOnText
+; VIVI BEGIN - EXP Share stuff that replaced unreferenced functions
+ExpShareToggleOff:
+	text_far _ExpShareToggleOff
 	text_end
-
-ItemGotOffText: ; unreferenced
-	text_far _ItemGotOffText
+ 
+ExpShareToggleOn:
+	text_far _ExpShareToggleOn
 	text_end
+; VIVI END
 
 ApplyPPUp:
 	ld a, MON_MOVES
