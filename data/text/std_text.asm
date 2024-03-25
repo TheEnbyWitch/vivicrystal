@@ -12,10 +12,8 @@ NurseDayText:
 
 NurseNiteText:
 	text "Good evening!"
-	line "You're out late."
-
-	para "Welcome to our"
-	line "#MON CENTER."
+	line "Welcome to our"
+	cont "#MON CENTER."
 	done
 
 PokeComNurseMornText:
@@ -47,15 +45,13 @@ PokeComNurseNiteText:
 
 	para "CENTER--or the"
 	line "#COM CENTER."
-	done
+	done 
 
+; VIVI: Shorten PokeCenter dialogue
 NurseAskHealText:
-	text "We can heal your"
-	line "#MON to perfect"
-	cont "health."
-
-	para "Shall we heal your"
-	line "#MON?"
+	text "Welcome!"
+	line "Shall we heal your"
+	cont "#MON?"
 	done
 
 NurseTakePokemonText:
@@ -63,11 +59,9 @@ NurseTakePokemonText:
 	line "#MON?"
 	done
 
+; VIVI: Shorten PokeCenter dialogue
 NurseReturnPokemonText:
-	text "Thank you for"
-	line "waiting."
-
-	para "Your #MON are"
+	text "Your #MON are"
 	line "fully healed."
 	done
 
