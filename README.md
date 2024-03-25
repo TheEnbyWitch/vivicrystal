@@ -1,6 +1,13 @@
-# Pokémon Crystal [![Build Status][ci-badge]][ci]
+# Pokémon Crystal - The Vivi Version [![Build Status][ci-badge]][ci]
 
-This is a disassembly of Pokémon Crystal.
+This is a disassembly of Pokémon Crystal with modifications made by me.
+
+## Changes
+
+- EXP Share from newer generations that is active from the start (thanks to [this tutorial](https://github.com/pret/pokecrystal/wiki/Generation-6-Experience-System))
+- Catching Pokémon gives EXP (thanks to [this tutorial](https://github.com/pret/pokecrystal/wiki/Gain-experience-from-catching-Pok%C3%A9mon))
+- Made saving quicker (thanks to [this tutorial](https://github.com/pret/pokecrystal/wiki/Remove-the-artificial-save-delay))
+- Pokémon Center Nurse dialogue is shorter
 
 It builds the following ROMs:
 
@@ -12,7 +19,6 @@ It builds the following ROMs:
 - CGBBYTE1.784.patch `sha1: a25517f60ca0e887d39ec698aa56a0040532a4b3`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
-
 
 ## See also
 
